@@ -145,6 +145,21 @@
             title="Filter by consultation date" 
           />
 
+          <!-- Google Sheets Quick Launch -->
+          @if (crmService.googleSheetViewUrl()) {
+            <button class="btn-sheet-link" (click)="openGoogleSheet()" title="Open Google Spreadsheet in new tab">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <span>Open Sheet ↗</span>
+            </button>
+          }
+
+          <!-- Google Sheets Setup & Sync Button -->
+          <button class="btn-sheet-sync" (click)="openSheetModal()" title="Configure real-time Google Sheets lead capture">
+            <span class="sheet-status-dot" [class.connected]="crmService.isSheetConnected()"></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            <span>Google Sheets</span>
+          </button>
+
           <button class="btn-secondary btn-export" (click)="exportCsv()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             <span>Export CSV</span>
@@ -329,4 +344,113 @@
       </div>
     </div>
   }
+
+    <!-- Google Sheets Integration Modal -->
+    @if (isSheetModalOpen()) {
+      <div class="modal-backdrop" (click)="closeSheetModal()">
+        <div class="modal-dialog luxury-card sheet-modal-dialog" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <div class="modal-title-box">
+              <div class="sheet-badge-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <div>
+                <h3>Google Sheets Live Synchronization</h3>
+                <p class="modal-lead-ref">Automated, real-time consultation lead capture to your Google Spreadsheet</p>
+              </div>
+            </div>
+            <button class="modal-close-btn" (click)="closeSheetModal()">✕</button>
+          </div>
+
+          <div class="modal-body sheet-modal-body">
+            <!-- Setup Instructions Box -->
+            <div class="sheet-instructions-box">
+              <div class="instructions-header">
+                <strong>✦ 60-Second Setup Guide:</strong>
+              </div>
+              <ol class="instructions-list">
+                <li>Create or open your Google Sheet at <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a>.</li>
+                <li>Go to <strong>Extensions &gt; Apps Script</strong> and paste the contents of <code>google-sheets-script.js</code> from this project.</li>
+                <li>Click <strong>Deploy &gt; New deployment</strong>, select <strong>Web app</strong>, set <em>Execute as: Me</em> and <em>Who has access: Anyone</em>.</li>
+                <li>Copy your Web App URL and paste it below, then click <strong>Save Settings</strong>.</li>
+              </ol>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                Google Apps Script Web App URL <span class="required-star">*</span>
+              </label>
+              <input 
+                type="url" 
+                [(ngModel)]="sheetWebhookInput" 
+                class="form-input" 
+                placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+              />
+              <span class="field-hint">The consultation booking form immediately pushes new inquiries to this endpoint in real time.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Google Sheet Spreadsheet Link (Optional)</label>
+              <input 
+                type="url" 
+                [(ngModel)]="sheetViewInput" 
+                class="form-input" 
+                placeholder="https://docs.google.com/spreadsheets/d/.../edit"
+              />
+              <span class="field-hint">Adds a 1-click "Open Sheet ↗" button to the CRM dashboard toolbar.</span>
+            </div>
+
+            <!-- Feedback Alerts -->
+            @if (saveSuccess()) {
+              <div class="sheet-alert sheet-alert-success">
+                <span>✓ Configuration saved securely. All new consultation bookings will flow to this Google Sheet.</span>
+              </div>
+            }
+
+            @if (testSuccess()) {
+              <div class="sheet-alert sheet-alert-success">
+                <span>✓ Connection verified! A test lead row was appended to your Google Sheet successfully.</span>
+              </div>
+            }
+
+            @if (testError()) {
+              <div class="sheet-alert sheet-alert-error">
+                <span>⚠ {{ testError() }}</span>
+              </div>
+            }
+
+            @if (syncResult()) {
+              <div class="sheet-alert sheet-alert-info">
+                <span>ℹ {{ syncResult() }}</span>
+              </div>
+            }
+
+            <div class="modal-footer-actions sheet-actions">
+              <div class="sheet-left-actions">
+                <button type="button" class="btn-secondary" (click)="testSheetConnection()" [disabled]="isTestingConnection()">
+                  @if (isTestingConnection()) {
+                    <span>Testing Ping...</span>
+                  } @else {
+                    <span>Test Connection</span>
+                  }
+                </button>
+                <button type="button" class="btn-secondary" (click)="syncLeadsToSheet()" [disabled]="isSyncing() || !crmService.isSheetConnected()">
+                  @if (isSyncing()) {
+                    <span>Syncing Leads...</span>
+                  } @else {
+                    <span>Sync All Inquiries ({{ leads().length }})</span>
+                  }
+                </button>
+              </div>
+
+              <div class="sheet-right-actions">
+                <button type="button" class="btn-secondary" (click)="closeSheetModal()">Close</button>
+                <button type="button" class="btn-primary" (click)="saveSheetConfig()">Save Settings</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
 </div>
+

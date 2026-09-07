@@ -201,6 +201,33 @@ app.post('/api/leads', leadLimiter, async (req, res) => {
 
     await dbOps.createLead(leadRecord);
 
+    // Optional: Asynchronously forward lead to Google Sheets Webhook
+    const sheetWebhook = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+    if (sheetWebhook && typeof fetch !== 'undefined') {
+      fetch(sheetWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          refId: refId,
+          fullName: leadRecord.full_name,
+          email: leadRecord.email,
+          phone: leadRecord.phone,
+          designation: leadRecord.designation,
+          company: leadRecord.company,
+          linkedin: leadRecord.linkedin,
+          transitionCategory: leadRecord.transition_category,
+          currentChallenge: leadRecord.current_challenge,
+          investmentReadiness: leadRecord.investment_readiness,
+          bookedDate: leadRecord.booked_date,
+          bookedTime: leadRecord.booked_time,
+          status: 'New',
+          notes: ''
+        })
+      }).catch((sheetErr) => {
+        console.warn('Google Sheets webhook forward warning:', sheetErr.message);
+      });
+    }
+
     // Return opaque response — zero server details exposed
     return res.status(201).json({
       success: true,

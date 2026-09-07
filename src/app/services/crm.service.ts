@@ -50,11 +50,18 @@ export class CrmService {
   private http = inject(HttpClient);
   private tokenKey = 'hpc_admin_token';
   private adminKey = 'hpc_admin_user';
+  private sheetWebhookKey = 'hpc_google_sheet_webhook_url';
+  private sheetViewKey = 'hpc_google_sheet_view_url';
 
   // Signals for state management
   token = signal<string | null>(this.getStoredToken());
   currentAdmin = signal<any>(this.getStoredAdmin());
   isAuthenticated = signal<boolean>(!!this.getStoredToken());
+
+  // Google Sheets Signals
+  googleSheetWebhookUrl = signal<string>(this.getStoredSheetWebhook());
+  googleSheetViewUrl = signal<string>(this.getStoredSheetViewUrl());
+  isSheetConnected = signal<boolean>(!!this.getStoredSheetWebhook());
 
   private getStoredToken(): string | null {
     try {
@@ -71,6 +78,130 @@ export class CrmService {
     } catch {
       return null;
     }
+  }
+
+  private getStoredSheetWebhook(): string {
+    try {
+      return localStorage.getItem(this.sheetWebhookKey) || '';
+    } catch {
+      return '';
+    }
+  }
+
+  private getStoredSheetViewUrl(): string {
+    try {
+      return localStorage.getItem(this.sheetViewKey) || '';
+    } catch {
+      return '';
+    }
+  }
+
+  setGoogleSheetConfig(webhookUrl: string, viewUrl: string): void {
+    try {
+      if (webhookUrl && webhookUrl.trim()) {
+        localStorage.setItem(this.sheetWebhookKey, webhookUrl.trim());
+        this.googleSheetWebhookUrl.set(webhookUrl.trim());
+        this.isSheetConnected.set(true);
+      } else {
+        localStorage.removeItem(this.sheetWebhookKey);
+        this.googleSheetWebhookUrl.set('');
+        this.isSheetConnected.set(false);
+      }
+
+      if (viewUrl && viewUrl.trim()) {
+        localStorage.setItem(this.sheetViewKey, viewUrl.trim());
+        this.googleSheetViewUrl.set(viewUrl.trim());
+      } else {
+        localStorage.removeItem(this.sheetViewKey);
+        this.googleSheetViewUrl.set('');
+      }
+    } catch (e) {
+      console.error('Error saving Google Sheet configuration:', e);
+    }
+  }
+
+  // Real-time dispatch to Google Sheets Webhook
+  sendLeadToGoogleSheet(payload: any, customWebhookUrl?: string): Promise<boolean> {
+    const url = customWebhookUrl || this.googleSheetWebhookUrl();
+    if (!url || !url.trim()) return Promise.resolve(false);
+
+    try {
+      // Content-Type: 'text/plain;charset=utf-8' is treated as a simple request by browsers,
+      // avoiding CORS preflight OPTIONS failures while delivering valid JSON to Google Apps Script.
+      return fetch(url.trim(), {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+      })
+        .then(() => true)
+        .catch((err) => {
+          console.warn('Google Sheet webhook fetch warning:', err);
+          return false;
+        });
+    } catch (e) {
+      console.warn('Google Sheet dispatch error:', e);
+      return Promise.resolve(false);
+    }
+  }
+
+  // Test Webhook Connection
+  async testGoogleSheetWebhook(testUrl?: string): Promise<boolean> {
+    const url = testUrl || this.googleSheetWebhookUrl();
+    if (!url) return false;
+
+    const testPayload = {
+      timestamp: new Date().toISOString(),
+      refId: `TEST-${Math.floor(100000 + Math.random() * 900000)}`,
+      fullName: 'Test Executive (HPC System Ping)',
+      email: 'test.executive@example.com',
+      phone: '+91 99999 00000',
+      designation: 'Managing Director',
+      company: 'High Performance Corp',
+      linkedin: 'https://linkedin.com',
+      transitionCategory: 'Anxiety & Overwhelm',
+      currentChallenge: 'Verifying real-time Google Sheets webhook connectivity.',
+      investmentReadiness: 'Ready to invest in 1:1 mentorship',
+      bookedDate: new Date().toISOString().split('T')[0],
+      bookedTime: '10:00 AM - 10:45 AM',
+      status: 'Test Connection',
+      notes: 'Automated test from HPC Portal',
+    };
+
+    return this.sendLeadToGoogleSheet(testPayload, url);
+  }
+
+  // Bulk Sync All Leads to Google Sheet
+  async syncAllLeadsToGoogleSheet(leads: LeadRecord[]): Promise<{ synced: number; total: number }> {
+    const url = this.googleSheetWebhookUrl();
+    if (!url) return { synced: 0, total: leads.length };
+
+    let synced = 0;
+    for (const lead of leads) {
+      const payload = {
+        timestamp: lead.created_at || new Date().toISOString(),
+        refId: lead.ref_id,
+        fullName: lead.full_name,
+        email: lead.email,
+        phone: lead.phone,
+        designation: lead.designation || '',
+        company: lead.company || '',
+        linkedin: lead.linkedin || '',
+        transitionCategory: lead.transition_category,
+        currentChallenge: lead.current_challenge,
+        investmentReadiness: lead.investment_readiness || '',
+        bookedDate: lead.booked_date,
+        bookedTime: lead.booked_time,
+        status: lead.status || 'New',
+        notes: lead.notes || '',
+      };
+
+      await this.sendLeadToGoogleSheet(payload, url);
+      synced++;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+
+    return { synced, total: leads.length };
   }
 
   private getAuthHeaders(): HttpHeaders {
@@ -150,12 +281,41 @@ export class CrmService {
     return defaults;
   }
 
-  // 1. Submit Public Lead & Call Booking (with resilient fallback for static hosts)
+  // 1. Submit Public Lead & Call Booking (with resilient fallback for static hosts & Google Sheets)
   submitLead(data: LeadSubmission): Observable<LeadSubmissionResponse> {
+    const fallbackRefId = `HPC-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    const sheetPayload = {
+      timestamp: new Date().toISOString(),
+      refId: fallbackRefId,
+      fullName: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      designation: data.designation || '',
+      company: data.company || '',
+      linkedin: data.linkedin || '',
+      transitionCategory: data.transitionCategory,
+      currentChallenge: data.currentChallenge,
+      investmentReadiness: data.investmentReadiness || '',
+      bookedDate: data.bookedDate,
+      bookedTime: data.bookedTime,
+      status: 'New',
+      notes: '',
+    };
+
+    // 1. Instantly dispatch to Google Sheets Webhook (non-blocking)
+    this.sendLeadToGoogleSheet(sheetPayload);
+
+    // 2. Also dispatch to local/backend endpoint if available
     return this.http.post<LeadSubmissionResponse>('/api/leads', data).pipe(
+      tap((res) => {
+        if (res && res.refId && res.refId !== fallbackRefId) {
+          sheetPayload.refId = res.refId;
+          this.sendLeadToGoogleSheet(sheetPayload);
+        }
+      }),
       catchError(() => {
         // Resilient fallback for static hosting (e.g. GitHub Pages)
-        const fallbackRefId = `HPC-${Math.floor(100000 + Math.random() * 900000)}`;
         const leads = this.getFallbackLeads();
         const newRecord: LeadRecord = {
           id: leads.length + 1,
@@ -173,7 +333,7 @@ export class CrmService {
           booked_time: data.bookedTime,
           status: 'New',
           notes: '',
-          created_at: new Date().toISOString()
+          created_at: new Date().toISOString(),
         };
         leads.unshift(newRecord);
         try {
@@ -185,7 +345,7 @@ export class CrmService {
           refId: fallbackRefId,
           bookedDate: data.bookedDate,
           bookedTime: data.bookedTime,
-          message: 'Your confidential 1:1 consultation has been scheduled successfully.'
+          message: 'Your confidential 1:1 consultation has been scheduled successfully.',
         });
       })
     );

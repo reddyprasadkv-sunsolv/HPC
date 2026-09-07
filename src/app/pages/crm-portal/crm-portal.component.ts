@@ -38,6 +38,17 @@ export class CrmPortalComponent implements OnInit {
   isUpdating = signal<boolean>(false);
   updateSuccess = signal<boolean>(false);
 
+  // Google Sheets Integration State
+  isSheetModalOpen = signal<boolean>(false);
+  sheetWebhookInput = signal<string>('');
+  sheetViewInput = signal<string>('');
+  isTestingConnection = signal<boolean>(false);
+  testSuccess = signal<boolean>(false);
+  testError = signal<string | null>(null);
+  isSyncing = signal<boolean>(false);
+  syncResult = signal<string | null>(null);
+  saveSuccess = signal<boolean>(false);
+
   ngOnInit(): void {
     if (this.crmService.isAuthenticated()) {
       this.loadDashboardData();
@@ -183,5 +194,69 @@ export class CrmPortalComponent implements OnInit {
     );
     const cleanedPhone = lead.phone.replace(/[^0-9]/g, '');
     window.open(`https://wa.me/${cleanedPhone}?text=${text}`, '_blank');
+  }
+
+  // Google Sheets Management
+  openSheetModal(): void {
+    this.sheetWebhookInput.set(this.crmService.googleSheetWebhookUrl());
+    this.sheetViewInput.set(this.crmService.googleSheetViewUrl());
+    this.testSuccess.set(false);
+    this.testError.set(null);
+    this.syncResult.set(null);
+    this.saveSuccess.set(false);
+    this.isSheetModalOpen.set(true);
+  }
+
+  closeSheetModal(): void {
+    this.isSheetModalOpen.set(false);
+  }
+
+  saveSheetConfig(): void {
+    this.crmService.setGoogleSheetConfig(this.sheetWebhookInput(), this.sheetViewInput());
+    this.saveSuccess.set(true);
+    setTimeout(() => this.saveSuccess.set(false), 3000);
+  }
+
+  async testSheetConnection(): Promise<void> {
+    const url = this.sheetWebhookInput().trim();
+    if (!url) {
+      this.testError.set('Please enter your Google Apps Script Web App URL first.');
+      return;
+    }
+
+    this.isTestingConnection.set(true);
+    this.testSuccess.set(false);
+    this.testError.set(null);
+
+    const success = await this.crmService.testGoogleSheetWebhook(url);
+    this.isTestingConnection.set(false);
+    if (success) {
+      this.testSuccess.set(true);
+      this.saveSheetConfig();
+    } else {
+      this.testError.set('Could not reach Google Sheets. Please verify the Web App deployment has "Who has access" set to "Anyone".');
+    }
+  }
+
+  async syncLeadsToSheet(): Promise<void> {
+    if (!this.crmService.isSheetConnected()) {
+      alert('Please configure and save your Google Apps Script Web App URL first.');
+      return;
+    }
+
+    this.isSyncing.set(true);
+    this.syncResult.set(null);
+    const res = await this.crmService.syncAllLeadsToGoogleSheet(this.leads());
+    this.isSyncing.set(false);
+    this.syncResult.set(`Successfully synced ${res.synced} of ${res.total} inquiries to Google Sheets.`);
+  }
+
+  openGoogleSheet(): void {
+    const viewUrl = this.crmService.googleSheetViewUrl();
+    if (viewUrl) {
+      window.open(viewUrl, '_blank');
+    } else {
+      this.openSheetModal();
+    }
   }
 }
