@@ -1,0 +1,360 @@
+/* ==========================================================================
+   MALLIKA RAO - HIGH PERFORMANCE COACHING
+   Design System & Tokens (Coolors Palette: #ddd5ca, #f0ebe3, #fffdfa, #f8f3ee, #d2cdc6)
+   Typography: Geist Sans & Geist Mono
+   ========================================================================== */
+
+:root {
+  /* Core Palette */
+  --bg-ivory: #fffdfa;
+  --bg-linen: #f8f3ee;
+  --bg-silk: #f0ebe3;
+  --taupe-light: #ddd5ca;
+  --taupe-stone: #d2cdc6;
+
+  /* Contrast & Luxury Accent Tones */
+  --text-charcoal: #191614;
+  --text-body: #403b37;
+  --text-muted: #6e6761;
+  --text-subtle: #968e86;
+  --accent-gold: #9e7343;
+  --accent-gold-dark: #7e572b;
+  --accent-gold-light: #c29b6e;
+  --accent-gold-bg: rgba(158, 115, 67, 0.08);
+  --accent-gold-border: rgba(158, 115, 67, 0.28);
+  --accent-gold-glow: rgba(158, 115, 67, 0.2);
+
+  /* Surfaces & Glassmorphism */
+  --surface-white: #ffffff;
+  --surface-glass: rgba(255, 253, 250, 0.9);
+  --surface-glass-border: rgba(221, 213, 202, 0.85);
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px -2px rgba(25, 22, 20, 0.04);
+  --shadow-card: 0 10px 30px -4px rgba(25, 22, 20, 0.06);
+  --shadow-hover: 0 20px 40px -6px rgba(25, 22, 20, 0.1);
+  --shadow-dropdown: 0 14px 40px -5px rgba(25, 22, 20, 0.12);
+
+  /* Typography */
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+
+  /* Spacing & Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-luxury: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Base Elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-body);
+  background-color: var(--bg-ivory);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-color: var(--bg-ivory);
+  background-image: 
+    radial-gradient(ellipse at 15% 0%, rgba(240, 235, 227, 0.7) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 100%, rgba(221, 213, 202, 0.5) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-charcoal);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--text-charcoal);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container Utilities */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 3.5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 3.5vw, 2.5rem);
+}
+
+.container-narrow {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Executive Badges & Tags */
+.badge-luxury {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background-color: var(--bg-silk);
+  border: 1px solid var(--taupe-light);
+  color: var(--text-charcoal);
+  box-shadow: var(--shadow-subtle);
+}
+
+.badge-luxury.badge-gold {
+  background-color: var(--accent-gold-bg);
+  border-color: var(--accent-gold-border);
+  color: var(--accent-gold-dark);
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-gold);
+  display: inline-block;
+  animation: pulse-dot 2.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #24201d 0%, #151312 100%);
+  color: #fffdfa;
+  padding: 0.95rem 1.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9375rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(25, 22, 20, 0.18);
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(25, 22, 20, 0.26);
+  background: linear-gradient(135deg, #151312 0%, #000000 100%);
+  color: #ffffff;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: var(--surface-white);
+  color: var(--text-charcoal);
+  padding: 0.95rem 1.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9375rem;
+  font-weight: 550;
+  border: 1px solid var(--taupe-light);
+  cursor: pointer;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-linen);
+  border-color: var(--taupe-stone);
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #a67c4a 0%, #8c6333 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #b38854 0%, #7e572b 100%);
+  box-shadow: 0 8px 25px var(--accent-gold-glow);
+}
+
+/* Section Common Layout */
+.section {
+  padding-top: clamp(4.5rem, 8vw, 7.5rem);
+  padding-bottom: clamp(4.5rem, 8vw, 7.5rem);
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-header .badge-luxury {
+  margin-bottom: 1.25rem;
+}
+
+.section-title {
+  margin-bottom: 1.15rem;
+  text-wrap: balance;
+}
+
+.section-subtitle {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--text-muted);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+  line-height: 1.65;
+}
+
+/* Card Styles */
+.luxury-card {
+  background-color: var(--surface-white);
+  border: 1px solid var(--taupe-light);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+}
+
+.luxury-card:hover {
+  border-color: var(--taupe-stone);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-3px);
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: var(--text-charcoal);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.form-label .required-star {
+  color: var(--accent-gold);
+  margin-left: 0.2rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--taupe-light);
+  background-color: var(--bg-ivory);
+  color: var(--text-charcoal);
+  transition: var(--transition-fast);
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--accent-gold);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px var(--accent-gold-bg);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Scrollbar refinement */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-linen);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--taupe-stone);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-subtle);
+}

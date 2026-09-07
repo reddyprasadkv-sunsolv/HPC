@@ -1,0 +1,1403 @@
+<!-- Exclusivity Announcement Bar -->
+<div class="announcement-bar">
+  <div class="container announcement-content">
+    <span class="announcement-pill">Private 1:1 Mentorship</span>
+    <span class="announcement-text">Exclusively limited to 5 Leaders & Founders per quarter • Now accepting Q2 applications</span>
+    <button class="announcement-cta" (click)="scrollToBooking()">Book Discovery Call ✦</button>
+  </div>
+</div>
+
+<!-- Sticky Executive Header -->
+<header class="executive-header">
+  <div class="container header-container">
+    <a href="#" class="brand-logo-wrap" title="Mallika Rao — High Performance Coaching">
+      <img src="assets/images/mallika-logo.png" alt="Mallika Rao Logo" class="brand-logo" />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a href="#crossroads" class="nav-link">The Crossroads</a>
+      <a href="#assessment" class="nav-link">Diagnostic</a>
+      <a href="#framework" class="nav-link">4-Stage Method</a>
+      <a href="#audience" class="nav-link">Who It's For</a>
+      <a href="#transformation" class="nav-link">Transformation</a>
+      <a href="#about-coach" class="nav-link">Meet Mallika</a>
+      <a href="#testimonials" class="nav-link">Results</a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="btn-primary btn-header" (click)="scrollToBooking()">
+        <span>Book Consultation</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle-btn" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen()" aria-label="Toggle navigation menu">
+        @if (!isMobileMenuOpen()) {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        } @else {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation Drawer -->
+  @if (isMobileMenuOpen()) {
+    <div class="mobile-nav-drawer">
+      <div class="container mobile-nav-content">
+        <a href="#crossroads" class="mobile-nav-link" (click)="closeMobileMenu()">The Crossroads</a>
+        <a href="#assessment" class="mobile-nav-link" (click)="closeMobileMenu()">Diagnostic</a>
+        <a href="#framework" class="mobile-nav-link" (click)="closeMobileMenu()">4-Stage Method</a>
+        <a href="#audience" class="mobile-nav-link" (click)="closeMobileMenu()">Who It's For</a>
+        <a href="#transformation" class="mobile-nav-link" (click)="closeMobileMenu()">Transformation</a>
+        <a href="#about-coach" class="mobile-nav-link" (click)="closeMobileMenu()">Meet Mallika</a>
+        <a href="#testimonials" class="mobile-nav-link" (click)="closeMobileMenu()">Results</a>
+        <div class="mobile-nav-actions">
+          <button class="btn-primary w-full" (click)="scrollToBooking()">
+            <span>Book 1:1 Consultation</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</header>
+
+<main>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-container">
+
+      <h1 class="hero-title">
+        Navigate Personal & Leadership Transitions with <span class="gradient-text">Calm Clarity</span>
+      </h1>
+
+      <p class="hero-subhead">
+        You’ve held everything together for years — Career, Family, Leadership & Expectations. 
+        Now you’re standing at the crossroads of a major transition where playing by the old rules is burning you out.
+      </p>
+
+      <div class="hero-cta-group">
+        <button class="btn-primary btn-hero" (click)="scrollToBooking()">
+          <span>Apply for InnerEdge™ Mentorship</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-secondary btn-hero" (click)="scrollToAssessment()">
+          <span>Take 60s Diagnostic ✦</span>
+        </button>
+      </div>
+
+      <!-- 3 Crossroads Cards -->
+      <div class="crossroads-grid" id="crossroads">
+        <!-- Card 1: Career Shift -->
+        <div class="crossroads-card">
+          <div class="card-top">
+            <div class="icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </div>
+            <span class="crossroads-tag">Career Shift</span>
+          </div>
+          <h3>The Professional Pivot</h3>
+          <p>Layoff, restructuring, or the quiet knowing that it’s time to leave the corporate treadmill and transition into entrepreneurship.</p>
+        </div>
+
+        <!-- Card 2: Leadership Jump -->
+        <div class="crossroads-card featured">
+          <div class="card-top">
+            <div class="icon-circle icon-circle-gold">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span class="crossroads-tag gold">Leadership Jump</span>
+          </div>
+          <h3>High-Stakes Elevation</h3>
+          <p>Stepping into bigger roles, managing multi-generational teams, and navigating executive pressure that weighs heavier than your title.</p>
+        </div>
+
+        <!-- Card 3: Personal Crossroads -->
+        <div class="crossroads-card">
+          <div class="card-top">
+            <div class="icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <span class="crossroads-tag">Personal Crossroads</span>
+          </div>
+          <h3>Identity Reinvention</h3>
+          <p>Divorce, heartbreak, parenting through emotional chaos, or rebuilding your sense of self after a life event that cracked your foundation.</p>
+        </div>
+      </div>
+
+      <!-- Trust Metrics Bar (CSS Grid for perfect horizontal alignment) -->
+      <div class="trust-bar-grid">
+        <div class="trust-item">
+          <span class="stat-number">1,100+</span>
+          <span class="stat-label">Executives & Founders</span>
+        </div>
+        <div class="trust-line"></div>
+        <div class="trust-item">
+          <span class="stat-number">15+ Years</span>
+          <span class="stat-label">Coaching Mastery</span>
+        </div>
+        <div class="trust-line"></div>
+        <div class="trust-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Confidential 1:1 Space</span>
+        </div>
+        <div class="trust-line"></div>
+        <div class="trust-item">
+          <span class="stat-number">16 Weeks</span>
+          <span class="stat-label">Transformative Immersion</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE REALITY CHECK SECTION -->
+  <section class="section reality-section">
+    <div class="container">
+      <div class="reality-box">
+        <div class="section-center-badge">
+          <span class="badge-luxury badge-gold">The Reality Check</span>
+        </div>
+        
+        <h2 class="reality-title">
+          While you look composed on the outside… <span class="reality-highlight">inside, something is slipping.</span>
+        </h2>
+
+        <div class="reality-split">
+          <!-- Column 1: Outside -->
+          <div class="reality-card outside-card">
+            <div class="reality-card-header">
+              <span class="reality-header-tag text-green">What People See</span>
+              <h4>The Composed Leader</h4>
+            </div>
+            <ul class="reality-clean-list">
+              <li>
+                <div class="bullet-icon check-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <span><strong>Executive Composure:</strong> Steady leader projecting total control</span>
+              </li>
+              <li>
+                <div class="bullet-icon check-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <span><strong>Strategic Problem Solver:</strong> High-functioning execution under pressure</span>
+              </li>
+              <li>
+                <div class="bullet-icon check-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <span><strong>Indispensable Anchor:</strong> Relied upon by boards, teams & family</span>
+              </li>
+              <li>
+                <div class="bullet-icon check-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <span><strong>Relentless Delivery:</strong> Driving revenue, vision & high-stakes deadlines</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Inside -->
+          <div class="reality-card inside-card">
+            <div class="reality-card-header">
+              <span class="reality-header-tag text-amber">What You Experience</span>
+              <h4>The Internal Friction</h4>
+            </div>
+            <ul class="reality-clean-list">
+              <li>
+                <div class="bullet-icon arrow-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <span><strong>Your mind is loud:</strong> Endless loops of decisions & what-ifs</span>
+              </li>
+              <li>
+                <div class="bullet-icon arrow-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <span><strong>Your sleep is shallow:</strong> Waking up exhausted at 3 AM</span>
+              </li>
+              <li>
+                <div class="bullet-icon arrow-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <span><strong>Your confidence is shaking:</strong> Impostor feelings creeping in</span>
+              </li>
+              <li>
+                <div class="bullet-icon arrow-bullet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <span><strong>Your bandwidth is shrinking:</strong> Operating on cortisol & adrenaline</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reality-quote">
+          <p>
+            “This isn’t a ‘phase.’ This is a turning point. An invitation to step into the next version of who you’re becoming without burning out or compromising what you’ve built.”
+          </p>
+          <div class="reality-author">
+            <span class="author-line"></span>
+            <span>Coach Mallika Rao</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE INNEREDGE PHILOSOPHY & OUTCOMES -->
+  <section class="section outcomes-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-luxury badge-gold">The InnerEdge™ Shift</div>
+        <h2 class="section-title">Imagine If You Could Lead From Inner Grounding</h2>
+        <p class="section-subtitle">
+          Transitions don’t break leaders. Navigating transitions without the right internal nervous system operating model does.
+        </p>
+      </div>
+
+      <div class="outcomes-grid">
+        <div class="outcome-card">
+          <span class="outcome-num">01</span>
+          <h4>Navigate Change Without Panic</h4>
+          <p>Move through high-stakes career or leadership shifts without the anxiety spiral and decision paralysis.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-num">02</span>
+          <h4>Decisions Under Pressure</h4>
+          <p>Make high-impact strategic choices from a calm, steady mind rather than reactive adrenaline.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-num">03</span>
+          <h4>Rebuild Shattered Confidence</h4>
+          <p>Restore unshakeable self-trust after career setbacks, organizational politics, or personal heartbreak.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-num">04</span>
+          <h4>Lead Teams Without Self-Loss</h4>
+          <p>Command authority, influence upward, and guide diverse teams while maintaining your energetic boundaries.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-num">05</span>
+          <h4>Restore Deep Sleep & Vitality</h4>
+          <p>Reset your nervous system to sleep soundly, think clearly, and drop chronic cortisol fatigue.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-num">06</span>
+          <h4>Reclaim Your True Identity</h4>
+          <p>Not the identity life or corporate culture demanded, but the authentic version that feels deeply true.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE TRANSITION ASSESSMENT -->
+  <section class="section assessment-section" id="assessment">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-luxury badge-gold">
+          <span class="badge-dot"></span>
+          <span>Interactive Executive Diagnostic</span>
+        </div>
+        <h2 class="section-title">Discover Your Transition Archetype</h2>
+        <p class="section-subtitle">
+          A 60-second confidential diagnostic for founders, CXOs, and leaders. Pinpoint your core friction loop and reveal your customized InnerEdge™ pathway.
+        </p>
+      </div>
+
+      <div class="assessment-card luxury-card">
+        <!-- Progress Bar & Header Meta -->
+        <div class="assessment-header-bar">
+          <div class="assessment-progress-track">
+            <div class="assessment-progress-fill" [style.width]="assessmentStep() === 1 ? '33%' : (assessmentStep() === 2 ? '66%' : (assessmentStep() === 3 ? '100%' : '100%'))"></div>
+          </div>
+          <div class="assessment-meta">
+            <span class="assessment-step-tag">
+              @if (assessmentStep() <= 3) {
+                Step {{ assessmentStep() }} of 3
+              } @else {
+                Diagnostic Complete
+              }
+            </span>
+            <span class="assessment-confidential">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>100% Private & Confidential</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Questions Flow (Steps 1 to 3) -->
+        @if (assessmentStep() <= 3) {
+          @for (q of assessmentQuestions; track q.id) {
+            @if (assessmentStep() === q.id) {
+              <div class="question-container">
+                <div class="question-header">
+                  <span class="question-badge">{{ q.badge }}</span>
+                  <h3 class="question-title">{{ q.question }}</h3>
+                  <p class="question-hint">{{ q.hint }}</p>
+                </div>
+
+                <div class="options-grid">
+                  @for (opt of q.options; track opt.key) {
+                    <div 
+                      class="option-card" 
+                      [class.selected]="isOptionSelected(q.id === 1 ? 'q1' : (q.id === 2 ? 'q2' : 'q3'), opt.key)"
+                      (click)="selectAssessmentOption(q.id === 1 ? 'q1' : (q.id === 2 ? 'q2' : 'q3'), opt.key)"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <div class="option-indicator">
+                        <span class="option-letter">{{ opt.letter }}</span>
+                        @if (isOptionSelected(q.id === 1 ? 'q1' : (q.id === 2 ? 'q2' : 'q3'), opt.key)) {
+                          <span class="option-check">✓</span>
+                        }
+                      </div>
+                      <div class="option-content">
+                        <h4 class="option-label">{{ opt.label }}</h4>
+                        <p class="option-subtext">{{ opt.subtext }}</p>
+                      </div>
+                    </div>
+                  }
+                </div>
+
+                <div class="assessment-actions">
+                  <button 
+                    type="button" 
+                    class="btn-secondary btn-assessment" 
+                    (click)="prevAssessmentStep()" 
+                    [disabled]="assessmentStep() === 1"
+                    [class.disabled]="assessmentStep() === 1"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    <span>Previous</span>
+                  </button>
+
+                  <button 
+                    type="button" 
+                    class="btn-primary btn-assessment" 
+                    (click)="nextAssessmentStep()"
+                    [disabled]="!canProceedAssessment()"
+                    [class.disabled]="!canProceedAssessment()"
+                  >
+                    @if (assessmentStep() < 3) {
+                      <span>Next Question</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    } @else {
+                      <span>Reveal My Diagnostic Profile ✦</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    }
+                  </button>
+                </div>
+              </div>
+            }
+          }
+        } @else {
+          <!-- Archetype Result Card (Step 4) -->
+          @if (activeArchetype(); as arch) {
+            <div class="result-container">
+              <div class="result-header">
+                <div class="badge-luxury badge-gold result-badge">
+                  <span>{{ arch.badge }}</span>
+                </div>
+                <h3 class="result-title">{{ arch.title }}</h3>
+                <p class="result-subtitle">{{ arch.subtitle }}</p>
+              </div>
+
+              <div class="result-body">
+                <!-- Insight 1: The Diagnosis -->
+                <div class="result-panel diagnosis-panel">
+                  <div class="panel-icon-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  </div>
+                  <div class="panel-content">
+                    <span class="panel-tag">Core Diagnosis</span>
+                    <p class="panel-text">{{ arch.diagnosis }}</p>
+                  </div>
+                </div>
+
+                <!-- Insight 2: Friction & Leverage (Split Columns) -->
+                <div class="result-grid-split">
+                  <div class="result-panel friction-panel">
+                    <div class="panel-header-mini">
+                      <span class="mini-bullet red-bullet"></span>
+                      <span class="panel-tag">Your Primary Friction Leak</span>
+                    </div>
+                    <p class="panel-subtext">{{ arch.frictionPoint }}</p>
+                  </div>
+
+                  <div class="result-panel leverage-panel">
+                    <div class="panel-header-mini">
+                      <span class="mini-bullet gold-bullet"></span>
+                      <span class="panel-tag">Your Immediate 90-Day Leverage</span>
+                    </div>
+                    <p class="panel-subtext">{{ arch.immediateLeverage }}</p>
+                  </div>
+                </div>
+
+                <!-- Recommended InnerEdge Pathway -->
+                <div class="pathway-box">
+                  <span class="pathway-title">Recommended InnerEdge™ Pathway</span>
+                  <div class="pathway-stages">
+                    @for (stg of arch.frameworkStages; track stg.step) {
+                      <div class="pathway-stage-card">
+                        <span class="pathway-step-pill">{{ stg.step }}</span>
+                        <div class="pathway-stage-info">
+                          <h5>{{ stg.name }}</h5>
+                          <p>{{ stg.focus }}</p>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <!-- Result Actions -->
+              <div class="result-actions">
+                <button type="button" class="btn-primary btn-result-cta" (click)="applyAssessmentToBooking()">
+                  <span>Apply for Mentorship with this Profile</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button type="button" class="btn-secondary btn-result-retake" (click)="resetAssessment()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                  <span>Retake Diagnostic</span>
+                </button>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 4-STAGE INNEREDGE FRAMEWORK -->
+  <section class="section framework-section" id="framework">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-luxury">Proprietary Framework</div>
+        <h2 class="section-title">The InnerEdge™ 4-Stage Framework</h2>
+        <p class="section-subtitle">
+          A systematic method integrating neuroscience, somatic emotional regulation, executive strategy, and mindfulness.
+        </p>
+      </div>
+
+      <!-- Framework Stage Tabs -->
+      <div class="stage-nav">
+        <button [class.active]="activeStage() === 1" (click)="setStage(1)" class="stage-btn" type="button">
+          <span class="stage-step">Stage 1</span>
+          <span class="stage-name">CALM</span>
+        </button>
+        <button [class.active]="activeStage() === 2" (click)="setStage(2)" class="stage-btn" type="button">
+          <span class="stage-step">Stage 2</span>
+          <span class="stage-name">CLARITY</span>
+        </button>
+        <button [class.active]="activeStage() === 3" (click)="setStage(3)" class="stage-btn" type="button">
+          <span class="stage-step">Stage 3</span>
+          <span class="stage-name">CONFIDENCE</span>
+        </button>
+        <button [class.active]="activeStage() === 4" (click)="setStage(4)" class="stage-btn" type="button">
+          <span class="stage-step">Stage 4</span>
+          <span class="stage-name">CREATE</span>
+        </button>
+      </div>
+
+      <!-- Stage Detail Display Card -->
+      <div class="stage-detail-card luxury-card">
+        @if (activeStage() === 1) {
+          <div class="stage-content">
+            <div class="stage-badge">Stage 01 • Emotional Grounding</div>
+            <h3>CALM: Nervous System Reset & Stability</h3>
+            <p class="stage-lead">Before you can make great decisions, your nervous system must drop out of fight-or-flight panic.</p>
+            
+            <div class="stage-deliverables">
+              <div class="deliverable-item">
+                <span class="deliv-number">01</span>
+                <div class="deliv-text">
+                  <strong>Somatic & Nervous System Reset:</strong>
+                  <span>Drop baseline anxiety, regulate cortisol spikes, and return to physical stability using EFT tapping and mindfulness.</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">02</span>
+                <div class="deliv-text">
+                  <strong>Emotional Resilience Under Fire:</strong>
+                  <span>Build an unshakeable inner buffer against corporate conflict, restructuring panic, and unexpected curveballs.</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">03</span>
+                <div class="deliv-text">
+                  <strong>Deep Rest Recovery:</strong>
+                  <span>Restore restful sleep cycles so your prefrontal cortex operates at peak cognitive capacity.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeStage() === 2) {
+          <div class="stage-content">
+            <div class="stage-badge">Stage 02 • Strategic Direction</div>
+            <h3>CLARITY: Identity, Direction & Decision Systems</h3>
+            <p class="stage-lead">Cutting through wandering thoughts to pinpoint exactly what matters and where to deploy your energy.</p>
+            
+            <div class="stage-deliverables">
+              <div class="deliverable-item">
+                <span class="deliv-number">01</span>
+                <div class="deliv-text">
+                  <strong>Map Your Next Chapter:</strong>
+                  <span>Whether corporate exit, executive ascension, or personal restart—define unambiguous 1-year and 3-year milestones.</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">02</span>
+                <div class="deliv-text">
+                  <strong>Establish Non-Negotiables:</strong>
+                  <span>Identify energetic leaks, eliminate toxic over-commitments, and set boundaries without guilt.</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">03</span>
+                <div class="deliv-text">
+                  <strong>High-Stakes Decision Framework:</strong>
+                  <span>Custom decision matrices to evaluate complex opportunities in minutes rather than weeks.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeStage() === 3) {
+          <div class="stage-content">
+            <div class="stage-badge">Stage 03 • Executive Authority</div>
+            <h3>CONFIDENCE: Leadership Presence & Influence</h3>
+            <p class="stage-lead">Speaking, negotiating, and commanding respect without having to raise your voice or second-guess your value.</p>
+            
+            <div class="stage-deliverables">
+              <div class="deliverable-item">
+                <span class="deliv-number">01</span>
+                <div class="deliv-text">
+                  <strong>Rebuild Following Setbacks:</strong>
+                  <span>Erase impostor syndrome and past baggage from layoffs, failed ventures, or difficult separations.</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">02</span>
+                <div class="deliv-text">
+                  <strong>Command High-Pressure Rooms:</strong>
+                  <span>Present to boards, multi-generational teams, and investors with grounded, natural authority.</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">03</span>
+                <div class="deliv-text">
+                  <strong>Relational & Boundary Mastery:</strong>
+                  <span>Handle difficult personalities, corporate politics, and sensitive family dynamics with grace.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeStage() === 4) {
+          <div class="stage-content">
+            <div class="stage-badge">Stage 04 • Sustainable Mastery</div>
+            <h3>CREATE: Reinvention & Sustainable Rhythm</h3>
+            <p class="stage-lead">Building daily rituals and sustainable operational rhythms so your success never relies on burning out.</p>
+            
+            <div class="stage-deliverables">
+              <div class="deliverable-item">
+                <span class="deliv-number">01</span>
+                <div class="deliv-text">
+                  <strong>Personal Energy Blueprint:</strong>
+                  <span>Daily morning & evening rituals tailored to your physiology, family structure, and work calendar.</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">02</span>
+                <div class="deliv-text">
+                  <strong>Work-Life Harmony:</strong>
+                  <span>Realize concrete time reclaim (our clients routinely save 10-14 hours per week while improving output).</span>
+                </div>
+              </div>
+              <div class="deliverable-item">
+                <span class="deliv-number">03</span>
+                <div class="deliv-text">
+                  <strong>90-Day Compounding Momentum:</strong>
+                  <span>A long-term system that keeps you progressing smoothly long after our 16 weeks conclude.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <div class="stage-footer">
+          <button class="btn-primary" (click)="scrollToBooking()">
+            <span>Experience This Framework in 1:1 Mentorship</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS SPECIFICALLY BUILT FOR -->
+  <section class="section audience-section" id="audience">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-luxury">Audience Alignment</div>
+        <h2 class="section-title">Who This Mentorship Is Built For</h2>
+        <p class="section-subtitle">
+          InnerEdge™ is designed for high-achieving individuals facing high-friction transitions.
+        </p>
+      </div>
+
+      <!-- 3 Transition Columns -->
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          </div>
+          <h3>Career Transitions</h3>
+          <ul class="aud-clean-list">
+            <li>Navigating a sudden layoff or corporate restructuring</li>
+            <li>Switching roles, business units, or new industries</li>
+            <li>Moving from corporate leadership to entrepreneurship</li>
+            <li>Rebuilding confidence after high-visibility professional setbacks</li>
+          </ul>
+        </div>
+
+        <div class="audience-card">
+          <div class="icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3>Leadership Transitions</h3>
+          <ul class="aud-clean-list">
+            <li>Stepping into a C-Suite, EVP, or Director seat</li>
+            <li>Managing multi-generational, diverse, or global teams</li>
+            <li>Navigating upward reporting in volatile political climates</li>
+            <li>Overcoming high-stakes visibility fatigue and decision paralysis</li>
+          </ul>
+        </div>
+
+        <div class="audience-card">
+          <div class="icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <h3>Personal Transitions</h3>
+          <ul class="aud-clean-list">
+            <li>Navigating divorce, separation, or emotional heartbreak</li>
+            <li>Parenting with calm through high-friction family chaos</li>
+            <li>Rebuilding after personal grief or relational upheaval</li>
+            <li>Reclaiming personal identity when the children or career shifts</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Symmetrical Alignment Criteria -->
+      <div class="alignment-box">
+        <div class="alignment-col yes-col">
+          <div class="alignment-col-header">
+            <span class="status-indicator-dot green"></span>
+            <h4>This Is For You If...</h4>
+          </div>
+          <ul class="alignment-list">
+            <li>
+              <div class="align-icon-box green">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>You’re in a transition shaking your identity, confidence, or stability.</span>
+            </li>
+            <li>
+              <div class="align-icon-box green">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>You’re leading others while privately feeling drained, overwhelmed, or stuck.</span>
+            </li>
+            <li>
+              <div class="align-icon-box green">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>You’re tired of living on adrenaline and cortisol spikes.</span>
+            </li>
+            <li>
+              <div class="align-icon-box green">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>You want a structured, grounded, and confidential space to rebuild inside-out.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="alignment-col no-col">
+          <div class="alignment-col-header">
+            <span class="status-indicator-dot red"></span>
+            <h4>This Is NOT For You If...</h4>
+          </div>
+          <ul class="alignment-list">
+            <li>
+              <div class="align-icon-box red">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>You are looking for a superficial "get motivated fast" band-aid.</span>
+            </li>
+            <li>
+              <div class="align-icon-box red">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>You are unwilling to look inward, practice mindfulness, or regulate emotions.</span>
+            </li>
+            <li>
+              <div class="align-icon-box red">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>You want someone else to take responsibility for your decisions.</span>
+            </li>
+            <li>
+              <div class="align-icon-box red">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>You are not ready to commit to who you are becoming in your next chapter.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE VS AFTER TRANSFORMATION -->
+  <section class="section transformation-section" id="transformation">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-luxury badge-gold">The Measurable Shift</div>
+        <h2 class="section-title">The InnerEdge™ Transformation</h2>
+        <p class="section-subtitle">Real, visceral shifts our clients report within the first 4 to 8 weeks.</p>
+      </div>
+
+      <div class="transform-grid">
+        <div class="transform-card before-card">
+          <div class="transform-header">
+            <div class="transform-icon-box red">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+            <h3>Before Mentorship</h3>
+          </div>
+          <ul class="transform-list">
+            <li>
+              <div class="t-list-bullet red">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>Waking up with dread and anxious morning tension</span>
+            </li>
+            <li>
+              <div class="t-list-bullet red">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>Overthinking every email, meeting, and career decision</span>
+            </li>
+            <li>
+              <div class="t-list-bullet red">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>Feeling overwhelmed and isolated at the top</span>
+            </li>
+            <li>
+              <div class="t-list-bullet red">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>Second-guessing your instincts after a setback</span>
+            </li>
+            <li>
+              <div class="t-list-bullet red">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>Working 60+ hours while feeling unproductive</span>
+            </li>
+            <li>
+              <div class="t-list-bullet red">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+              <span>Snapping at family due to chronic work exhaustion</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="transform-card after-card">
+          <div class="transform-header">
+            <div class="transform-icon-box green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3>After InnerEdge™</h3>
+          </div>
+          <ul class="transform-list">
+            <li>
+              <div class="t-list-bullet green">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>Mornings start with peaceful presence and clear intention</span>
+            </li>
+            <li>
+              <div class="t-list-bullet green">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>Decisions made decisively from calm inner conviction</span>
+            </li>
+            <li>
+              <div class="t-list-bullet green">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>In complete control of emotional states and energy</span>
+            </li>
+            <li>
+              <div class="t-list-bullet green">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>Deep, restorative sleep every night without mental racing</span>
+            </li>
+            <li>
+              <div class="t-list-bullet green">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>Cutting 10-12 hours from workweek with higher impact</span>
+            </li>
+            <li>
+              <div class="t-list-bullet green">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span>Fully present with loved ones and enjoying life’s moments</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET COACH MALLIKA RAO -->
+  <section class="section bio-section" id="about-coach">
+    <div class="container bio-container">
+      <div class="bio-image-col">
+        <div class="bio-frame">
+          <img src="assets/images/mallika-hero.jpg" alt="Coach Mallika Rao" class="bio-image" />
+        </div>
+        <div class="bio-sub-badge">
+          <div class="bio-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div class="bio-badge-text">
+            <strong>15+ Years Mastery</strong>
+            <span>Tony Robbins & Cloe Madanes Trained</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bio-content-col">
+        <div class="badge-luxury badge-gold">Your Mentor & Guide</div>
+        <h2 class="bio-title">Meet Mallika Rao</h2>
+        <p class="bio-lead">
+          High Performance Leadership Coach, Mindfulness & Meditation Mentor, and Creator of the InnerEdge™ Method.
+        </p>
+
+        <div class="bio-text">
+          <p>
+            For over 15 years, I have worked behind closed doors with CEOs, founders, executives, and creative directors navigating the most tumultuous seasons of their lives: sudden layoffs, multi-million dollar business shifts, high-stakes leadership leaps, and painful divorces.
+          </p>
+          <p>
+            My approach blends high-performance leadership strategy with deep somatic regulation, meditation, EFT tapping, and mindset mastery. I do not offer generic motivational clichés. I give you the internal systems, emotional calm, and strategic clarity you need to lead your life like an art piece.
+          </p>
+          <blockquote>
+            “Transitions don’t break people. Going through them without the right inner systems does. InnerEdge™ gives you those systems.”
+          </blockquote>
+        </div>
+
+        <div class="bio-credentials-grid">
+          <div class="cred-item">
+            <div class="cred-check-circle">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Tony Robbins & Cloe Madanes Certified</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-check-circle">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Mindfulness & Meditation Mentor</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-check-circle">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Emotional Freedom Technique (EFT)</span>
+          </div>
+          <div class="cred-item">
+            <div class="cred-check-circle">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Keynote Speaker & Lifestyle Mentor</span>
+          </div>
+        </div>
+
+        <button class="btn-primary" (click)="scrollToBooking()">
+          <span>Request Private 1:1 Consultation</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS INCLUDED IN THE 16-WEEK CONTAINER -->
+  <section class="section container-section" id="container">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-luxury badge-gold">The Mentorship Structure</div>
+        <h2 class="section-title">Inside the 16-Week InnerEdge™ Container</h2>
+        <p class="section-subtitle">
+          A high-touch, confidential executive partnership built around your demanding schedule.
+        </p>
+      </div>
+
+      <div class="container-features-grid">
+        <div class="container-feature-card">
+          <span class="feature-badge">Component 01</span>
+          <h3>16 Weekly 1:1 Deep-Dive Sessions</h3>
+          <p>75-minute intensive advisory sessions focusing on leadership strategy, identity work, nervous system resets, and emotional processing.</p>
+        </div>
+
+        <div class="container-feature-card">
+          <span class="feature-badge">Component 02</span>
+          <h3>Direct WhatsApp Concierge Access</h3>
+          <p>Private on-demand voice and text access for high-stakes decisions when you cannot wait for the next scheduled session.</p>
+        </div>
+
+        <div class="container-feature-card">
+          <span class="feature-badge">Component 03</span>
+          <h3>Lifetime InnerEdge™ Vault Access</h3>
+          <p>Exclusive guided resets, neuro-somatic meditations, transition playbooks, and leadership frameworks tailored for executives.</p>
+        </div>
+
+        <div class="container-feature-card">
+          <span class="feature-badge">Component 04</span>
+          <h3>Leadership Rituals & Energy Blueprint</h3>
+          <p>Bespoke daily, weekly, and crisis-management operational rhythms built specifically for your context and physiology.</p>
+        </div>
+
+        <div class="container-feature-card full-span">
+          <span class="feature-badge">Component 05</span>
+          <h3>90-Day Post-Mentorship Momentum Plan</h3>
+          <p>A structured transition roadmap designed to ensure your new identity, habits, and calm compound for years to come.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE CLIENT TESTIMONIALS -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-luxury badge-gold">Verified Client Outcomes</div>
+        <h2 class="section-title">Words From Leaders & Founders</h2>
+        <p class="section-subtitle">
+          Real stories of executives, startup founders, and senior directors who transformed chaos into calm clarity.
+        </p>
+      </div>
+
+      <!-- Testimonial Filter Tabs -->
+      <div class="testimonial-filter-nav">
+        <button [class.active]="activeTestimonialTab() === 'all'" (click)="setTestimonialTab('all')">All Stories (12)</button>
+        <button [class.active]="activeTestimonialTab() === 'founder'" (click)="setTestimonialTab('founder')">Founders & Entrepreneurs</button>
+        <button [class.active]="activeTestimonialTab() === 'corporate'" (click)="setTestimonialTab('corporate')">Corporate Executives</button>
+        <button [class.active]="activeTestimonialTab() === 'tech'" (click)="setTestimonialTab('tech')">Tech & AI Leaders</button>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="testimonials-grid">
+        @for (t of filteredTestimonials; track t.name) {
+          <div class="testimonial-card luxury-card">
+            <div class="t-stars">
+              <img src="assets/images/stars.png" alt="5 Stars Rating" class="stars-img" />
+            </div>
+
+            <div class="t-highlight">“{{ t.highlight }}”</div>
+
+            <p class="t-quote">{{ t.quote }}</p>
+
+            <div class="t-author-box">
+              <img [src]="t.image" [alt]="t.name" class="t-avatar" />
+              <div class="t-meta">
+                <div class="t-name">{{ t.name }}</div>
+                <div class="t-role">{{ t.role }}</div>
+                @if (t.company) {
+                  <div class="t-company">{{ t.company }}</div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD ENQUIRY & CALL BOOKING (REPLACES TOPMATE) -->
+  <section class="section booking-section" id="book-consultation">
+    <div class="container">
+      <div class="booking-wrapper">
+        <!-- Left Column: Intro -->
+        <div class="booking-intro">
+          <div class="badge-luxury badge-gold">Direct Executive Intake</div>
+          <h2>Schedule Your Confidential 1:1 Consultation</h2>
+          <p>
+            Instead of generic third-party scheduling, use this private intake directly connected to Coach Mallika's desk. Select your preferred date and 45-minute consultation window below.
+          </p>
+
+          <div class="booking-highlights">
+            <div class="b-highlight-item">
+              <div class="b-check-circle">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span>45-Minute Private Deep-Dive Strategy Session</span>
+            </div>
+            <div class="b-highlight-item">
+              <div class="b-check-circle">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span>Direct Audit of Your Current Transition & Bottleneck</span>
+            </div>
+            <div class="b-highlight-item">
+              <div class="b-check-circle">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span>100% Confidential NDA-grade Executive Space</span>
+            </div>
+            <div class="b-highlight-item">
+              <div class="b-check-circle">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span>Instant Calendar (.ics) & Direct WhatsApp Confirmation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Booking Form -->
+        <div class="booking-form-card luxury-card">
+          @if (!bookingConfirmed()) {
+            @if (linkedArchetype(); as linked) {
+              <div class="linked-archetype-banner">
+                <div class="linked-banner-content">
+                  <div class="linked-banner-header">
+                    <span class="badge-luxury badge-gold">
+                      <span class="badge-dot"></span>
+                      <span>Diagnostic Linked: {{ linked.title }}</span>
+                    </span>
+                    <button type="button" class="btn-unlink" (click)="clearLinkedAssessment()" title="Clear linked assessment">✕ Unlink</button>
+                  </div>
+                  <p class="linked-text">Your transition category and diagnostic leverage points have been automatically integrated into this consultation booking.</p>
+                </div>
+              </div>
+            }
+
+            <!-- Stepper Bar (Horizontally Centered Circles and Connectors) -->
+            <div class="stepper-bar">
+              <div class="step-indicator" [class.active]="currentStep() === 1" [class.completed]="currentStep() > 1">
+                <span class="step-circle">1</span>
+                <span class="step-title">Your Profile</span>
+              </div>
+              <div class="step-connector" [class.active]="currentStep() > 1"></div>
+              <div class="step-indicator" [class.active]="currentStep() === 2" [class.completed]="currentStep() > 2">
+                <span class="step-circle">2</span>
+                <span class="step-title">Crossroads</span>
+              </div>
+              <div class="step-connector" [class.active]="currentStep() > 2"></div>
+              <div class="step-indicator" [class.active]="currentStep() === 3">
+                <span class="step-circle">3</span>
+                <span class="step-title">Date & Time</span>
+              </div>
+            </div>
+
+            <!-- Error Banner -->
+            @if (submissionError()) {
+              <div class="error-banner">
+                <span>⚠ {{ submissionError() }}</span>
+              </div>
+            }
+
+            <!-- STEP 1: Profile & Contact -->
+            @if (currentStep() === 1) {
+              <div class="step-body">
+                <h3 class="step-heading">Step 1: Your Leadership Profile</h3>
+                
+                <div class="form-group">
+                  <label class="form-label">Full Name <span class="required-star">*</span></label>
+                  <input type="text" [(ngModel)]="formModel.fullName" class="form-input" placeholder="e.g., Alexandra Wright" />
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Work / Primary Email <span class="required-star">*</span></label>
+                    <input type="email" [(ngModel)]="formModel.email" class="form-input" placeholder="alexandra@company.com" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phone / WhatsApp <span class="required-star">*</span></label>
+                    <input type="tel" [(ngModel)]="formModel.phone" class="form-input" placeholder="+1 (555) 234-5678" />
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Designation / Role</label>
+                    <input type="text" [(ngModel)]="formModel.designation" class="form-input" placeholder="e.g., VP Product, Founder" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Company / Venture</label>
+                    <input type="text" [(ngModel)]="formModel.company" class="form-input" placeholder="e.g., Tech Scaleup, Private" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">LinkedIn Profile (Optional)</label>
+                  <input type="url" [(ngModel)]="formModel.linkedin" class="form-input" placeholder="https://linkedin.com/in/yourname" />
+                </div>
+
+                <div class="step-actions right">
+                  <button type="button" class="btn-primary" (click)="nextStep()">
+                    <span>Continue to Crossroads</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            }
+
+            <!-- STEP 2: Crossroads & Goals -->
+            @if (currentStep() === 2) {
+              <div class="step-body">
+                <h3 class="step-heading">Step 2: The Transition & Crossroads</h3>
+
+                <div class="form-group">
+                  <label class="form-label">Primary Transition Focus <span class="required-star">*</span></label>
+                  <select [(ngModel)]="formModel.transitionCategory" class="form-select">
+                    <option value="Career Transition">Career Transition (Layoff, Industry Shift, Corporate to Startup)</option>
+                    <option value="Leadership Elevation">Leadership Elevation (Executive Jump, Managing Big Teams, High Pressure)</option>
+                    <option value="Personal Crossroads">Personal Crossroads (Divorce, Heartbreak, Life Reset, Burnout)</option>
+                    <option value="High-Stakes Burnout">Executive Burnout & Energy Recovery</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">What is the biggest challenge or decision you are navigating right now? <span class="required-star">*</span></label>
+                  <textarea [(ngModel)]="formModel.currentChallenge" class="form-textarea" placeholder="Please describe your current crossroads, where you feel stuck or drained, and what clarity you are seeking..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Readiness to Invest in 1:1 Mentorship</label>
+                  <select [(ngModel)]="formModel.investmentReadiness" class="form-select">
+                    <option value="Ready to invest in 1:1 mentorship">I am fully ready to invest time and resources in high-performance mentorship</option>
+                    <option value="Exploring fit & framework">I want to explore the framework and determine strategic fit</option>
+                    <option value="Corporate sponsorship">My organization will be sponsoring this leadership engagement</option>
+                  </select>
+                </div>
+
+                <div class="step-actions split">
+                  <button type="button" class="btn-secondary" (click)="prevStep()">
+                    <span>Back</span>
+                  </button>
+                  <button type="button" class="btn-primary" (click)="nextStep()">
+                    <span>Select Call Date & Time</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            }
+
+            <!-- STEP 3: Date & Time Picker -->
+            @if (currentStep() === 3) {
+              <div class="step-body">
+                <h3 class="step-heading">Step 3: Choose Your Call Date & Time</h3>
+                <p class="step-subhead">Select your date and a 45-minute executive consultation window.</p>
+
+                <!-- Date Picker -->
+                <div class="form-group">
+                  <label class="form-label">Preferred Date <span class="required-star">*</span></label>
+                  <input 
+                    type="date" 
+                    [(ngModel)]="formModel.bookedDate" 
+                    [min]="minBookingDate" 
+                    [max]="maxBookingDate" 
+                    class="form-input date-input" 
+                  />
+                </div>
+
+                <!-- Time Slot Groups -->
+                <div class="form-group">
+                  <label class="form-label">Available 45-Min Consultation Windows <span class="required-star">*</span></label>
+                  
+                  <div class="slots-container">
+                    @for (group of timeSlots; track group.period) {
+                      <div class="slot-group">
+                        <span class="slot-group-title">{{ group.period }}</span>
+                        <div class="slots-row">
+                          @for (time of group.times; track time) {
+                            <button 
+                              type="button" 
+                              class="slot-btn" 
+                              [class.selected]="formModel.bookedTime === time" 
+                              (click)="selectTimeSlot(time)">
+                              {{ time }}
+                            </button>
+                          }
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="booking-summary-box">
+                  <div class="summary-line">
+                    <span>Selected Date:</span>
+                    <strong>{{ formModel.bookedDate }}</strong>
+                  </div>
+                  <div class="summary-line">
+                    <span>Selected Time Window:</span>
+                    <strong>{{ formModel.bookedTime }}</strong>
+                  </div>
+                  <div class="summary-line">
+                    <span>Location:</span>
+                    <strong>Private Zoom / Google Meet Link (Shared post-booking)</strong>
+                  </div>
+                </div>
+
+                <div class="step-actions split">
+                  <button type="button" class="btn-secondary" (click)="prevStep()" [disabled]="isSubmitting()">
+                    <span>Back</span>
+                  </button>
+                  <button type="button" class="btn-primary btn-gold" (click)="submitBooking()" [disabled]="isSubmitting()">
+                    @if (isSubmitting()) {
+                      <span>Securing Your Consultation...</span>
+                    } @else {
+                      <span>Confirm & Book 1:1 Consultation</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    }
+                  </button>
+                </div>
+              </div>
+            }
+          } @else {
+            <!-- STEP 4: SUCCESS CONFIRMATION STATE -->
+            <div class="confirmation-view">
+              <div class="conf-icon-circle">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              
+              <div class="badge-luxury badge-gold">Consultation Confirmed</div>
+              
+              <h3 class="conf-title">Your Private Session Is Booked</h3>
+              
+              <p class="conf-desc">
+                Coach Mallika Rao has received your application. A confirmation notice with calendar details has been generated.
+              </p>
+
+              <div class="conf-receipt">
+                <div class="receipt-row">
+                  <span>Reference ID:</span>
+                  <strong class="receipt-id">{{ bookingConfirmed()?.refId }}</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Client Name:</span>
+                  <strong>{{ formModel.fullName }}</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Consultation Date:</span>
+                  <strong>{{ bookingConfirmed()?.bookedDate }}</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Reserved Time Window:</span>
+                  <strong>{{ bookingConfirmed()?.bookedTime }}</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Status:</span>
+                  <strong class="status-confirmed">Application Received & Scheduled</strong>
+                </div>
+              </div>
+
+              <div class="conf-actions">
+                <button class="btn-primary btn-gold" (click)="downloadCalendar()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Download Calendar Invite (.ics)</span>
+                </button>
+                
+                <button class="btn-secondary" (click)="openWhatsApp()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+                  <span>Direct WhatsApp Desk</span>
+                </button>
+              </div>
+
+              <button class="conf-new-btn" (click)="resetBooking()">Book Another Consultation</button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Floating Quick Action Button -->
+<div class="floating-booking-widget">
+  <button class="floating-btn" (click)="scrollToBooking()">
+    <span class="floating-pulse"></span>
+    <span>Book 1:1 Call ✦</span>
+  </button>
+</div>
+
+<!-- Executive Footer -->
+<footer class="executive-footer">
+  <div class="container footer-container">
+    <div class="footer-brand-col">
+      <img src="assets/images/mallika-logo.png" alt="Mallika Rao" class="footer-logo" />
+      <p class="footer-tagline">
+        High Performance Leadership Coaching & Lifestyle Mentorship for Founders, Executives, and Leaders in Transition.
+      </p>
+      <div class="footer-badge">
+        <span>InnerEdge™ Proprietary Method</span>
+      </div>
+    </div>
+
+    <div class="footer-nav-col">
+      <span class="footer-heading">Navigation</span>
+      <a href="#crossroads">The Crossroads</a>
+      <a href="#framework">4-Stage Framework</a>
+      <a href="#audience">Who It's For</a>
+      <a href="#transformation">The Transformation</a>
+      <a href="#testimonials">Client Results</a>
+    </div>
+
+    <div class="footer-nav-col">
+      <span class="footer-heading">Programs & Mentorship</span>
+      <a (click)="scrollToBooking()" class="footer-clickable">1:1 Executive Mentorship</a>
+      <a (click)="scrollToBooking()" class="footer-clickable">Life by Design Immersion</a>
+      <a (click)="scrollToBooking()" class="footer-clickable">Corporate Keynote Speaking</a>
+      <a (click)="scrollToBooking()" class="footer-clickable">Nervous System Reset Retreats</a>
+    </div>
+
+    <div class="footer-nav-col">
+      <span class="footer-heading">Private Advisory</span>
+      <p class="footer-subtext">Confidential executive mentorship for founders, CXOs, and leaders in high-stakes transitions.</p>
+      <button class="btn-primary btn-footer-cta" (click)="scrollToBooking()">
+        <span>Book Private Call</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-container">
+      <span>© 2026 Mallika Rao. All Rights Reserved.</span>
+      <span class="footer-credit">
+        Made with <span class="heart-symbol" aria-label="love">♥</span> by 
+        <a href="https://sunsolv.in/" target="_blank" rel="noopener noreferrer" class="sunsolv-link">Sunsolv Technologies</a>
+      </span>
+    </div>
+  </div>
+</footer>
