@@ -219,12 +219,61 @@ export class CrmService {
 
   // Initial fallback sample leads if running on static host
   private getFallbackLeads(): LeadRecord[] {
-    try {
-      const stored = localStorage.getItem('hpc_static_leads');
-      if (stored) return JSON.parse(stored);
-    } catch {}
-
     const defaults: LeadRecord[] = [
+      {
+        id: 101,
+        ref_id: 'HPC-DIAG-884',
+        full_name: 'Pooja Mehta (Diagnostic Test)',
+        email: 'pooja.mehta@luminar.co',
+        phone: '+91 98210 99887',
+        designation: 'Chief Product Officer',
+        company: 'Luminar Technologies',
+        linkedin: 'https://linkedin.com/in/poojamehta',
+        transition_category: 'Anxiety & Overwhelm',
+        current_challenge: '[DIAGNOSTIC RESULT: The High-Achiever with a Loud Mind] Struggling with chronic anxiety, overthinking, and mental exhaustion; seeking somatic nervous system regulation, stillness, and emotional grounding.',
+        investment_readiness: 'Ready to invest in 1:1 mentorship',
+        booked_date: '2026-09-12',
+        booked_time: '11:30 AM - 12:30 PM IST',
+        status: 'New',
+        notes: 'Diagnostic Assessment Completed: Archetype 02 • Overthinking & Nervous System Overload',
+        created_at: '2026-09-07T17:05:31Z'
+      },
+      {
+        id: 102,
+        ref_id: 'HPC-581903',
+        full_name: 'Anil Kulkarni',
+        email: 'anil.kulkarni@techcapital.in',
+        phone: '+91 98450 11223',
+        designation: 'Managing Partner',
+        company: 'Tech Capital Advisors',
+        linkedin: 'https://linkedin.com/in/anilkulkarni',
+        transition_category: 'Anxiety & Overwhelm',
+        current_challenge: 'Overwhelmed by continuous stakeholder demands; looking for grounded clarity and emotional stability.',
+        investment_readiness: 'Ready to begin immediately',
+        booked_date: 'Tomorrow',
+        booked_time: '03:00 PM - 04:00 PM IST',
+        status: 'New',
+        notes: 'Direct application from Coach Mallika Rao Website',
+        created_at: '2026-09-07T17:03:54Z'
+      },
+      {
+        id: 103,
+        ref_id: 'HPC-TEST-002',
+        full_name: 'Sunsolv Test 2',
+        email: 'client2@sunsolv.in',
+        phone: '+91 98765 43210',
+        designation: 'Managing Director',
+        company: 'Test Corp',
+        linkedin: '',
+        transition_category: 'Anxiety & Overwhelm',
+        current_challenge: 'Testing Google Sheet webhook connection and real-time synchronization.',
+        investment_readiness: 'Ready to begin immediately',
+        booked_date: '2026-09-10',
+        booked_time: '10:00 AM',
+        status: 'New',
+        notes: 'System verification lead',
+        created_at: '2026-09-07T17:01:52Z'
+      },
       {
         id: 1,
         ref_id: 'HPC-713768',
@@ -280,9 +329,23 @@ export class CrmService {
         created_at: '2026-09-07T12:33:58Z'
       }
     ];
+
     try {
+      const storedStr = localStorage.getItem('hpc_static_leads');
+      if (storedStr) {
+        const stored: LeadRecord[] = JSON.parse(storedStr);
+        const existingRefs = new Set(stored.map(l => l.ref_id));
+        const missing = defaults.filter(d => !existingRefs.has(d.ref_id));
+        if (missing.length > 0) {
+          const merged = [...missing, ...stored];
+          localStorage.setItem('hpc_static_leads', JSON.stringify(merged));
+          return merged;
+        }
+        return stored;
+      }
       localStorage.setItem('hpc_static_leads', JSON.stringify(defaults));
     } catch {}
+
     return defaults;
   }
 
