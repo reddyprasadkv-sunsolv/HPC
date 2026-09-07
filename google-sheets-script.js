@@ -23,7 +23,7 @@
  */
 
 // CONFIGURATION: Set email for instant notification alerts (leave empty to disable)
-var NOTIFICATION_EMAIL = "coachmallika@gmail.com"; // Change to your preferred email address
+var NOTIFICATION_EMAIL = "coachmallikarao@gmail.com"; // Coach Mallika Rao's notification email
 
 function doGet(e) {
   return ContentService.createTextOutput(JSON.stringify({
