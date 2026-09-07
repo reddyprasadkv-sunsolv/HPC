@@ -25,7 +25,11 @@ app.use(
         ],
         fontSrc: ["'self'", 'https://fonts.gstatic.com'],
         imgSrc: ["'self'", 'data:', 'https://mallikarao.com'],
-        connectSrc: ["'self'"]
+        connectSrc: [
+          "'self'",
+          'https://script.google.com',
+          'https://script.googleusercontent.com'
+        ]
       }
     },
     hidePoweredBy: true,
@@ -201,12 +205,14 @@ app.post('/api/leads', leadLimiter, async (req, res) => {
 
     await dbOps.createLead(leadRecord);
 
-    // Optional: Asynchronously forward lead to Google Sheets Webhook
-    const sheetWebhook = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+    // Real-time asynchronous forward to Google Sheets Webhook
+    const sheetWebhook =
+      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
+      'https://script.google.com/macros/s/AKfycbyMX5WY6aI7LBp4ohghWY4CBZTM3kdUbVKJNWUR6Mo2T7ShPCp8TeSDJVBDModeurmyWg/exec';
     if (sheetWebhook && typeof fetch !== 'undefined') {
       fetch(sheetWebhook, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           refId: refId,
           fullName: leadRecord.full_name,

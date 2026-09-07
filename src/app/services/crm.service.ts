@@ -80,11 +80,16 @@ export class CrmService {
     }
   }
 
+  private readonly defaultSheetWebhook =
+    'https://script.google.com/macros/s/AKfycbyMX5WY6aI7LBp4ohghWY4CBZTM3kdUbVKJNWUR6Mo2T7ShPCp8TeSDJVBDModeurmyWg/exec';
+
   private getStoredSheetWebhook(): string {
     try {
-      return localStorage.getItem(this.sheetWebhookKey) || '';
+      const stored = localStorage.getItem(this.sheetWebhookKey);
+      if (stored && stored.trim()) return stored.trim();
+      return this.defaultSheetWebhook;
     } catch {
-      return '';
+      return this.defaultSheetWebhook;
     }
   }
 
