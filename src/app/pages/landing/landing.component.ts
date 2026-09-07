@@ -71,47 +71,47 @@ export class LandingComponent {
     'scaled-leader': {
       id: 'scaled-leader',
       title: 'The Scaled Leader at Altitude',
-      subtitle: 'High-Altitude Executive, CXO, or Board-Level Scope',
+      subtitle: 'Leadership Elevation, Executive Pressure & Inner Composure',
       badge: 'Archetype 01 of 04',
-      category: 'Leadership Elevation',
+      category: 'Leadership Pressure',
       diagnosis:
-        'You have proven your tactical excellence repeatedly, but your expanded scope and high-stakes stakeholder politics demand an entirely different internal operating system. What got you here (hyper-vigilant control, tactical solving) is now causing severe cognitive overload and decision fatigue.',
+        'You carry immense responsibility and high-stakes stakeholder expectations, but navigating constant executive pressure is taxing your internal systems. What got you here (hyper-vigilant control, tactical solving) is now causing severe cognitive overload and decision fatigue.',
       frictionPoint:
         'Carrying total accountability with no safe room for vulnerability; chronic 2 AM decision rumination.',
       immediateLeverage:
         'Shift from adrenaline-fueled problem solving to somatic nervous system grounding and decisive executive presence.',
       frameworkStages: [
         { step: 'Stage 1', name: 'CALM', focus: 'Drop fight-or-flight cortisol spikes to restore executive composure under pressure.' },
-        { step: 'Stage 2', name: 'CLARITY', focus: 'Filter high-stakes noise and align on the top 2 strategic imperatives that move the needle.' }
+        { step: 'Stage 2', name: 'CLARITY', focus: 'Filter high-stakes noise and align on the top strategic imperatives with calm conviction.' }
       ],
       suggestedChallengeNote:
-        'Assessment Profile: The Scaled Leader at Altitude. Navigating high-stakes executive elevation and team scaling; looking to stabilize my nervous system, drop 2 AM decision rumination, and lead with calm executive presence.'
+        'Assessment Profile: The Scaled Leader at Altitude. Navigating heavy executive expectations; looking to drop chronic stress, lead from inner stillness, and protect well-being.'
     },
-    'sovereign-founder': {
-      id: 'sovereign-founder',
-      title: 'The Sovereign Founder in Pivot',
-      subtitle: 'Corporate Exit, Venture Leap, or Strategic Restructure',
+    'anxiety-overwhelm': {
+      id: 'anxiety-overwhelm',
+      title: 'The High-Achiever with a Loud Mind',
+      subtitle: 'Chronic Anxiety, Overthinking & Decision Paralysis',
       badge: 'Archetype 02 of 04',
-      category: 'Career Transition',
+      category: 'Anxiety & Overwhelm',
       diagnosis:
-        'You are standing at the threshold of leaving the corporate treadmill or pivoting your venture into a bold new chapter. You have immense competence, yet the ambiguity of stepping away from established playbooks triggers quiet paralysis, imposter friction, and identity doubt.',
+        'You maintain high performance on paper, but internally your nervous system is caught in continuous hyper-vigilance. Relentless overthinking, catastrophizing, and second-guessing every choice leave you feeling mentally exhausted before the day even begins.',
       frictionPoint:
-        'Untangling your intrinsic self-worth from past titles, and navigating high-stakes ambiguity without an institutional safety net.',
+        'Trapped in cognitive rumination and fight-or-flight tension, unable to quiet the internal alarm bells.',
       immediateLeverage:
-        'Anchor deep internal certainty and sovereign conviction before executing high-stakes tactical leaps.',
+        'Somatic neural regulation, EFT tapping, and mindfulness to dissolve internal anxiety loops and restore grounded inner calm.',
       frameworkStages: [
-        { step: 'Stage 2', name: 'CLARITY', focus: 'Untangle conditioned identity from your true sovereign vision and strengths.' },
-        { step: 'Stage 4', name: 'CREATE', focus: 'Execute a structured, panic-free 90-day transition roadmap with unshakeable focus.' }
+        { step: 'Stage 1', name: 'CALM', focus: 'Somatic nervous system reset, EFT tapping regulation, and quietening the loud mind.' },
+        { step: 'Stage 2', name: 'CLARITY', focus: 'Untangle irrational anxiety from true intuitive signal to make decisive choices.' }
       ],
       suggestedChallengeNote:
-        'Assessment Profile: The Sovereign Founder in Pivot. Stepping out of corporate/restructure into my own venture; seeking absolute strategic clarity, emotional resilience, and a grounded 90-day execution framework.'
+        'Assessment Profile: The High-Achiever with a Loud Mind. Struggling with chronic anxiety, overthinking, and mental exhaustion; seeking somatic nervous system regulation, stillness, and emotional grounding.'
     },
     'resilient-architect': {
       id: 'resilient-architect',
-      title: 'The Resilient Architect Reclaiming Power',
-      subtitle: 'High-Functioning Burnout & Energy Recovery',
+      title: 'The Resilient Leader in Burnout Recovery',
+      subtitle: 'Nervous System Depletion & High-Functioning Exhaustion',
       badge: 'Archetype 03 of 04',
-      category: 'High-Stakes Burnout',
+      category: 'Executive Burnout Recovery',
       diagnosis:
         'You maintain an impeccable exterior of control and competence, but behind closed doors, your energy reserves are running on fumes. Shallow sleep, morning dread, and emotional numbness are warning lights that your nervous system has lived in chronic survival mode for too long.',
       frictionPoint:
@@ -123,16 +123,16 @@ export class LandingComponent {
         { step: 'Stage 3', name: 'CONFIDENCE', focus: 'Rebuild internal energetic self-trust and command authority without self-sacrifice.' }
       ],
       suggestedChallengeNote:
-        'Assessment Profile: The Resilient Architect Reclaiming Power. Experiencing high-functioning burnout, chronic cortisol fatigue, and shallow sleep; seeking immediate somatic reset and firm executive boundaries.'
+        'Assessment Profile: The Resilient Leader in Burnout Recovery. Experiencing chronic cortisol fatigue, emotional exhaustion, and shallow sleep; seeking nervous system restoration and sustainable vitality.'
     },
     'life-sovereign': {
       id: 'life-sovereign',
       title: 'The Life & Identity Sovereign',
-      subtitle: 'Personal Crossroads, Life Transition, or Mid-Career Realignment',
+      subtitle: 'Personal Crossroads, Relationship Upheaval & Life Reset',
       badge: 'Archetype 04 of 04',
-      category: 'Personal Crossroads',
+      category: 'Major Life Transitions',
       diagnosis:
-        'A profound personal inflection point (divorce, health event, loss, or existential life re-evaluation) has shaken your internal foundation. Trying to lead teams and sustain high performance while carrying private emotional grief is exhausting. You are ready to realign who you truly are with how you lead.',
+        'A profound personal inflection point (divorce, relationship heartbreak, parenting turbulence, or an existential life re-evaluation) has shaken your internal foundation. Trying to lead teams and sustain high performance while carrying private emotional grief is exhausting. You are ready to realign who you truly are with how you lead.',
       frictionPoint:
         'Carrying private emotional turmoil while projecting executive composure; feeling deeply isolated at the top.',
       immediateLeverage:
@@ -157,26 +157,26 @@ export class LandingComponent {
         {
           key: 'scaled-leader',
           letter: 'A',
-          label: 'Expanded Leadership Scope (CXO, VP, or Board-Level Elevation)',
-          subtext: 'Stepping into bigger roles where stakes, team dynamics, and politics demand higher executive presence.'
+          label: 'High-Stakes Leadership Pressure & Altitude',
+          subtext: 'Managing heavy responsibility and team dynamics, needing to lead with calm presence rather than stress.'
         },
         {
-          key: 'sovereign-founder',
+          key: 'anxiety-overwhelm',
           letter: 'B',
-          label: 'High-Stakes Pivot (Corporate to Venture, Restructuring, or Exit)',
-          subtext: 'Leaving the corporate treadmill or pivoting your venture into uncharted, ambiguous territory.'
+          label: 'Relentless Anxiety, Overthinking & The Loud Mind',
+          subtext: 'A mind that never stops spinning, constant second-guessing, and internal dread that steals your peace.'
         },
         {
           key: 'resilient-architect',
           letter: 'C',
-          label: 'High-Functioning Burnout & Energy Depletion',
+          label: 'Executive Burnout & Nervous System Depletion',
           subtext: 'Succeeding on paper, but privately exhausted, running on chronic adrenaline, and waking up with dread.'
         },
         {
           key: 'life-sovereign',
           letter: 'D',
-          label: 'Personal Crossroads or Identity Re-evaluation',
-          subtext: 'Navigating divorce, grief, health, or a profound re-examination of what truly matters in your next chapter.'
+          label: 'Major Life Transition or Personal Crossroads',
+          subtext: 'Navigating divorce, relationship heartbreak, family friction, or a profound re-examination of what matters.'
         }
       ]
     },
@@ -260,7 +260,7 @@ export class LandingComponent {
     designation: '',
     company: '',
     linkedin: '',
-    transitionCategory: 'Career Transition',
+    transitionCategory: 'Anxiety & Overwhelm',
     currentChallenge: '',
     investmentReadiness: 'Ready to invest in 1:1 mentorship',
     bookedDate: this.getDefaultDate(),
@@ -358,7 +358,7 @@ export class LandingComponent {
       company: 'Wenalytics IoT Solutions',
       image: 'assets/images/hridaynath.jpg',
       category: 'founder',
-      highlight: 'Rope-walking 2 high-stress careers made clear in 4 sessions',
+      highlight: 'Navigating dual high-stress demands made clear in 4 sessions',
       quote: `I was trying to rope walk 2 careers: as an actor and as a founder of a tech startup with global presence. In about 3 to 4 sessions with Mallika, I was able to look at my career objectively, see through the clutter in my mind, and make quicker, clearer decisions.`
     },
     {
@@ -486,7 +486,7 @@ export class LandingComponent {
       designation: '',
       company: '',
       linkedin: '',
-      transitionCategory: 'Career Transition',
+      transitionCategory: 'Anxiety & Overwhelm',
       currentChallenge: '',
       investmentReadiness: 'Ready to invest in 1:1 mentorship',
       bookedDate: this.getDefaultDate(),
