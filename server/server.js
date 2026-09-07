@@ -345,6 +345,21 @@ app.patch('/api/admin/leads/:id', apiLimiter, requireAdmin, async (req, res) => 
   }
 });
 
+// Delete Lead
+app.delete('/api/admin/leads/:id', apiLimiter, requireAdmin, async (req, res) => {
+  try {
+    const success = await dbOps.deleteLead(req.params.id);
+    if (!success) {
+      return res.status(404).json({ error: 'Lead not found or already removed.' });
+    }
+    return res.json({ success: true, message: 'Lead removed successfully.' });
+  } catch (err) {
+    console.error('Error deleting lead:', err);
+    return res.status(500).json({ error: 'Unable to remove lead.' });
+  }
+});
+
+
 // Export Leads to CSV
 app.get('/api/admin/export', apiLimiter, requireAdmin, async (req, res) => {
   try {

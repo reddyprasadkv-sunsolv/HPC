@@ -199,6 +199,16 @@ const dbOps = {
     });
   },
 
+  // Delete lead
+  deleteLead: (id) => {
+    return new Promise((resolve, reject) => {
+      db.run('DELETE FROM leads WHERE id = ? OR ref_id = ?', [id, id], function (err) {
+        if (err) return reject(err);
+        resolve(this.changes > 0);
+      });
+    });
+  },
+
   // Verify Admin Login
   verifyAdmin: (username, password) => {
     return new Promise((resolve, reject) => {

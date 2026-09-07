@@ -539,7 +539,23 @@ export class CrmService {
     );
   }
 
-  // 6. Generate .ICS Calendar File for download
+  // 6. Admin: Delete Lead
+  deleteLead(id: number | string): Observable<any> {
+    return this.http.delete<any>(`/api/admin/leads/${id}`, {
+      headers: this.getAuthHeaders(),
+    }).pipe(
+      catchError(() => {
+        let leads = this.getFallbackLeads();
+        leads = leads.filter(l => l.id != id && l.ref_id !== id);
+        try {
+          localStorage.setItem('hpc_static_leads', JSON.stringify(leads));
+        } catch {}
+        return of({ success: true, message: 'Lead removed successfully.' });
+      })
+    );
+  }
+
+  // 7. Generate .ICS Calendar File for download
   generateCalendarInvite(lead: {
     fullName: string;
     bookedDate: string;

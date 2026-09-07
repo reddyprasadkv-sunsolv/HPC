@@ -38,6 +38,11 @@ export class CrmPortalComponent implements OnInit {
   isUpdating = signal<boolean>(false);
   updateSuccess = signal<boolean>(false);
 
+  // Deletion State
+  isDeleting = signal<boolean>(false);
+  deleteConfirmLead = signal<LeadRecord | null>(null);
+  deleteSuccessToast = signal<string | null>(null);
+
   // Google Sheets Integration State
   isSheetModalOpen = signal<boolean>(false);
   sheetWebhookInput = signal<string>('');
@@ -151,6 +156,50 @@ export class CrmPortalComponent implements OnInit {
       error: (err) => {
         this.isUpdating.set(false);
         alert(err.error?.error || 'Failed to update lead');
+      }
+    });
+  }
+
+  promptDeleteLead(lead: LeadRecord, event?: Event): void {
+    if (event) event.stopPropagation();
+    this.deleteConfirmLead.set(lead);
+  }
+
+  cancelDeleteLead(): void {
+    this.deleteConfirmLead.set(null);
+  }
+
+  confirmDeleteLead(): void {
+    const lead = this.deleteConfirmLead();
+    if (!lead) return;
+
+    this.isDeleting.set(true);
+    this.crmService.deleteLead(lead.id || lead.ref_id).subscribe({
+      next: () => {
+        this.isDeleting.set(false);
+        const ref = lead.ref_id;
+        this.deleteConfirmLead.set(null);
+
+        // Remove from leads list
+        this.leads.update(list => list.filter(l => l.id !== lead.id && l.ref_id !== lead.ref_id));
+
+        // If details modal was showing this lead, close it
+        if (this.selectedLead()?.id === lead.id || this.selectedLead()?.ref_id === lead.ref_id) {
+          this.closeLeadDetail();
+        }
+
+        // Refresh stats
+        this.crmService.getStats().subscribe(res => {
+          if (res && res.success) this.stats.set(res.stats);
+        });
+
+        // Show toast
+        this.deleteSuccessToast.set(`Inquiry ${ref} deleted successfully.`);
+        setTimeout(() => this.deleteSuccessToast.set(null), 3500);
+      },
+      error: (err) => {
+        this.isDeleting.set(false);
+        alert(err.error?.error || 'Failed to delete consultation lead.');
       }
     });
   }

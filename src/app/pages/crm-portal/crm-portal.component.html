@@ -87,6 +87,12 @@
   } @else {
     <!-- If Authenticated: Show CRM Dashboard -->
     <div class="container crm-dashboard">
+      @if (deleteSuccessToast()) {
+        <div class="delete-toast-banner">
+          <span>✓ {{ deleteSuccessToast() }}</span>
+        </div>
+      }
+
       <!-- KPI Stats Grid -->
       <div class="kpi-grid">
         <div class="kpi-card luxury-card">
@@ -225,9 +231,17 @@
                       <span [class]="getStatusClass(lead.status)">{{ lead.status }}</span>
                     </td>
                     <td class="col-action">
-                      <button class="btn-manage" (click)="openLeadDetail(lead); $event.stopPropagation()">
-                        <span>Manage</span>
-                      </button>
+                      <div class="row-actions">
+                        <button class="btn-manage" (click)="openLeadDetail(lead); $event.stopPropagation()" title="View & Edit Lead">
+                          <span>Manage</span>
+                        </button>
+                        <button class="btn-row-delete" (click)="promptDeleteLead(lead, $event)" title="Delete Lead">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          </svg>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 }
@@ -329,15 +343,25 @@
               </div>
             }
 
-            <div class="modal-footer-actions">
-              <button class="btn-secondary" (click)="closeLeadDetail()">Close</button>
-              <button class="btn-primary" (click)="saveLeadUpdate()" [disabled]="isUpdating()">
-                @if (isUpdating()) {
-                  <span>Saving Changes...</span>
-                } @else {
-                  <span>Save Lead Status & Notes</span>
-                }
+            <div class="modal-footer-actions lead-modal-footer">
+              <button type="button" class="btn-delete-lead" (click)="promptDeleteLead(selectedLead()!)" [disabled]="isDeleting()" title="Delete this lead">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>Delete Lead</span>
               </button>
+
+              <div class="modal-right-actions">
+                <button class="btn-secondary" (click)="closeLeadDetail()">Close</button>
+                <button class="btn-primary" (click)="saveLeadUpdate()" [disabled]="isUpdating()">
+                  @if (isUpdating()) {
+                    <span>Saving Changes...</span>
+                  } @else {
+                    <span>Save Lead Status & Notes</span>
+                  }
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -448,6 +472,41 @@
                 <button type="button" class="btn-primary" (click)="saveSheetConfig()">Save Settings</button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Delete Confirmation Modal Dialog -->
+    @if (deleteConfirmLead()) {
+      <div class="modal-backdrop delete-confirm-backdrop" (click)="cancelDeleteLead()">
+        <div class="modal-dialog luxury-card delete-confirm-dialog" (click)="$event.stopPropagation()">
+          <div class="delete-icon-circle">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+          </div>
+          <h3>Delete Consultation Inquiry?</h3>
+          <p class="delete-lead-info">
+            Are you sure you want to delete the consultation record for:
+          </p>
+          <div class="delete-target-card">
+            <strong>{{ deleteConfirmLead()?.full_name }}</strong>
+            <span class="delete-target-ref">{{ deleteConfirmLead()?.ref_id }} • {{ deleteConfirmLead()?.transition_category }}</span>
+          </div>
+          <p class="delete-warning-note">This record will be permanently removed from your CRM dashboard.</p>
+          <div class="delete-modal-actions">
+            <button type="button" class="btn-secondary" (click)="cancelDeleteLead()" [disabled]="isDeleting()">Cancel</button>
+            <button type="button" class="btn-danger-confirm" (click)="confirmDeleteLead()" [disabled]="isDeleting()">
+              @if (isDeleting()) {
+                <span>Deleting...</span>
+              } @else {
+                <span>Delete Record</span>
+              }
+            </button>
           </div>
         </div>
       </div>
