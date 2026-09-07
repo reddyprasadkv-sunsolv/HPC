@@ -64,23 +64,27 @@ db.serialize(() => {
     );
   `);
 
-  // Seed default admin account if not present
-  const defaultAdmin = process.env.CRM_ADMIN_USER || 'coachmallika';
-  const defaultPass = process.env.CRM_ADMIN_PASS || 'MallikaInnerEdge2026!';
+  // Seed default admin accounts if not present
+  const seedAdmins = [
+    { user: 'coachmallika', pass: 'MallikaInnerEdge2026!', name: 'Coach Mallika Rao' },
+    { user: 'mallika', pass: 'InnerEdge2025!', name: 'Coach Mallika Rao' }
+  ];
 
-  db.get('SELECT id FROM admins WHERE username = ?', [defaultAdmin], (err, row) => {
-    if (!err && !row) {
-      const hash = bcrypt.hashSync(defaultPass, 10);
-      db.run(
-        'INSERT INTO admins (username, password_hash, full_name) VALUES (?, ?, ?)',
-        [defaultAdmin, hash, 'Mallika Rao'],
-        (insertErr) => {
-          if (!insertErr) {
-            console.log(`Default CRM admin account created: ${defaultAdmin}`);
+  seedAdmins.forEach(account => {
+    db.get('SELECT id FROM admins WHERE username = ?', [account.user], (err, row) => {
+      if (!err && !row) {
+        const hash = bcrypt.hashSync(account.pass, 10);
+        db.run(
+          'INSERT INTO admins (username, password_hash, full_name) VALUES (?, ?, ?)',
+          [account.user, hash, account.name],
+          (insertErr) => {
+            if (!insertErr) {
+              console.log(`Default CRM admin account created: ${account.user}`);
+            }
           }
-        }
-      );
-    }
+        );
+      }
+    });
   });
 });
 

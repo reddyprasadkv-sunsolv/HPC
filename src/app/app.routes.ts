@@ -8,14 +8,26 @@ export const routes: Routes = [
     title: 'High Performance Coaching — Mallika Rao | Navigate Transitions with Calm Clarity'
   },
   {
+    path: 'crm',
+    loadComponent: () =>
+      import('./pages/crm-portal/crm-portal.component').then((m) => m.CrmPortalComponent),
+    title: 'Executive CRM & Schedule Portal — Mallika Rao'
+  },
+  {
     path: 'crm-portal',
     loadComponent: () =>
       import('./pages/crm-portal/crm-portal.component').then((m) => m.CrmPortalComponent),
     title: 'Executive CRM & Schedule Portal — Mallika Rao'
   },
   {
+    path: 'admin',
+    redirectTo: 'crm',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: ''
   }
 ];
+
 

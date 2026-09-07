@@ -2414,6 +2414,23 @@
   gap: 1rem;
 }
 
+.footer-portal-link {
+  color: #8c857d;
+  font-size: 0.75rem;
+  margin-left: 0.75rem;
+  text-decoration: none;
+  opacity: 0.55;
+  display: inline-block;
+  transition: var(--transition-fast);
+}
+
+.footer-portal-link:hover {
+  color: var(--accent-gold-light);
+  opacity: 1;
+  text-decoration: underline;
+}
+
+
 .footer-credits,
 .footer-credit {
   font-size: 0.8125rem;

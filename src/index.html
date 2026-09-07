@@ -18,6 +18,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" type="image/png" href="assets/images/mallika-logo.png" />
+    <script>
+      // Single-Page Application (SPA) redirect for GitHub Pages & static hosting
+      // If someone opens /HPC/crm or /HPC/crm-portal directly without a hash, redirect to hash route
+      (function() {
+        var pathname = window.location.pathname;
+        var hash = window.location.hash;
+        if (!hash) {
+          if (pathname.endsWith('/crm') || pathname.endsWith('/crm/')) {
+            window.location.replace(pathname.replace(/\/crm\/?$/, '') + '/#/crm' + window.location.search);
+          } else if (pathname.endsWith('/crm-portal') || pathname.endsWith('/crm-portal/')) {
+            window.location.replace(pathname.replace(/\/crm-portal\/?$/, '') + '/#/crm-portal' + window.location.search);
+          } else if (pathname.endsWith('/admin') || pathname.endsWith('/admin/')) {
+            window.location.replace(pathname.replace(/\/admin\/?$/, '') + '/#/crm' + window.location.search);
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <app-root></app-root>
